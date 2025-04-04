@@ -52,6 +52,7 @@ extern SignalInfo_t signal_info_real;//�����ź���Ϣ
 int16_t show_value1;
 int16_t show_value2;
 int16_t size;
+int16_t size_t_;
 volatile uint8_t task1_done = 0;  // ���� 1 ״̬��־
 /***********************/
 void DrawGrid(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint16_t color) {
@@ -140,9 +141,9 @@ void Task1_Start(void) {
 	
     signal_info_real=capture_and_FFT( FFT_LENGTH, ADC_1_Value_DMA,  SAMPLING_RATE);
 	
-//	size = sizeof(ADC_1_Value_DMA) / sizeof(ADC_1_Value_DMA[0]);//显示数组ADC_1_Value_DMA
-	size = sizeof(fft_outputbuf) / sizeof(fft_outputbuf[0]);
-	 
+  size = sizeof(ADC_1_Value_DMA) / sizeof(ADC_1_Value_DMA[0]);//显示数组ADC_1_Value_DMA
+	size_t_ = sizeof(fft_outputbuf) / sizeof(fft_outputbuf[0]); //显示傅里叶变换的数组
+	
 	DrawDynamicGraph(GRAPH_X_OFFSET, GRAPH_Y_OFFSET, GRAPH_WIDTH, GRAPH_HEIGHT, ADC_1_Value_DMA, size);
     // ���� 1 ����
     task1_done = 1;
@@ -236,9 +237,10 @@ int main(void)
   {
 		signal_info_real=capture_and_FFT( FFT_LENGTH, ADC_1_Value_DMA,  SAMPLING_RATE);
 		size = sizeof(ADC_1_Value_DMA) / sizeof(ADC_1_Value_DMA[0]);
+		size_t_ = sizeof(fft_outputbuf) / sizeof(fft_outputbuf[0]); //显示傅里叶变换的数组
+	  DrawDynamicGraph(GRAPH_X_OFFSET, 160, GRAPH_WIDTH, GRAPH_HEIGHT, ADC_1_Value_DMA, size);
+		DrawDynamicGraph_float(GRAPH_X_OFFSET, GRAPH_Y_OFFSET, GRAPH_WIDTH, GRAPH_HEIGHT, fft_outputbuf, size_t_);
 		
-	//DrawDynamicGraph(GRAPH_X_OFFSET, GRAPH_Y_OFFSET, GRAPH_WIDTH, GRAPH_HEIGHT, ADC_1_Value_DMA, size);
-		DrawDynamicGraph_float(GRAPH_X_OFFSET, GRAPH_Y_OFFSET, GRAPH_WIDTH, GRAPH_HEIGHT, fft_outputbuf, size);
     char msg_author[64];
 		
 		
