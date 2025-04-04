@@ -72,7 +72,9 @@ SignalInfo_t capture_and_FFT(uint32_t FFT_LENGTH_, uint16_t *ADC_1_Value_DMA, fl
 
     // 整理 FFT 输入数组
     for (uint32_t i = 0; i < FFT_LENGTH_; i++) {
-        fft_inputbuf[2 * i] = ADC_1_Value_DMA[i];  // 实部
+//								 fft_inputbuf[2*i]=15 + 10*arm_sin_f32(2*PI*i*100/FFT_LENGTH) + \
+//																		5.5*arm_sin_f32(2*PI*i*150/FFT_LENGTH); 
+	        fft_inputbuf[2 * i] = ADC_1_Value_DMA[i];  // 实部
         fft_inputbuf[2 * i + 1] = 0;              // 虚部
     }
 

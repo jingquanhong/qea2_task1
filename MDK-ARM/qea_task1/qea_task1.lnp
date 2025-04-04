@@ -1,4 +1,4 @@
---cpu=Cortex-M4.fp.sp
+--cpu=Cortex-M4.fp
 "qea_task1\startup_stm32f407xx.o"
 "qea_task1\main.o"
 "qea_task1\gpio.o"
@@ -39,9 +39,9 @@
 "qea_task1\stm32f4xx_hal_tim_ex.o"
 "qea_task1\system_stm32f4xx.o"
 "qea_task1\fft.o"
-"../Middlewares/ST/ARM/DSP/Lib/arm_cortexM4lf_math.lib"
 "qea_task1\atk_md0350.o"
 "qea_task1\atk_md0350_fsmc.o"
+"../Middlewares/ST/ARM/DSP/Lib/arm_cortexM4lf_math.lib"
 --strict --scatter "qea_task1\qea_task1.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

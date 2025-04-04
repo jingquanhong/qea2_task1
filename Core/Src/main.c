@@ -36,11 +36,11 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 /**my define**/
-#define GRAPH_WIDTH 320     // 曲线显示的宽度
-#define GRAPH_HEIGHT 200    // 曲线显示的高度
+#define GRAPH_WIDTH 320     // 曲线显示的宽�?
+#define GRAPH_HEIGHT 200    // 曲线显示的高�?
 #define GRAPH_X_OFFSET 0    // 曲线显示的X偏移
 #define GRAPH_Y_OFFSET 0    // 曲线显示的Y偏移
-#define GRAPH_COLOR ATK_MD0350_BLUE  // 曲线的颜色
+#define GRAPH_COLOR ATK_MD0350_BLUE  // 曲线的颜�?
 #define BACKGROUND_COLOR ATK_MD0350_WHITE  // 背景颜色
 #define GRID_COLOR ATK_MD0350_LIGHTGRAY  // 网格颜色
 /*****/
@@ -54,22 +54,22 @@ int16_t size;
 volatile uint8_t task1_done = 0;  // ���� 1 ״̬��־
 /***********************/
 void DrawGrid(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint16_t color) {
-    // 绘制水平线
+    // 绘制水平�?
     for (uint16_t i = 0; i <= height; i += 20) {
         atk_md0350_draw_line(x, y + i, x + width, y + i, color);
     }
-    // 绘制垂直线
+    // 绘制垂直�?
     for (uint16_t i = 0; i <= width; i += 40) {
         atk_md0350_draw_line(x + i, y, x + i, y + height, color);
     }
 }
 
-// 绘制动态曲线
+// 绘制动�?�曲�?
 void DrawDynamicGraph(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint16_t *data, uint32_t data_size) {
     static uint16_t prev_x = 0;
     static uint16_t prev_y = 0;
     uint16_t current_x, current_y;
-    uint16_t max_value = 4095;  // 假设ADC是12位，最大值4095
+    uint16_t max_value = 4095;  // 假设ADC�?12位，�?大�??4095
 
     // 清空曲线区域
     atk_md0350_fill(x, y, x + width, y + height, BACKGROUND_COLOR);
@@ -100,7 +100,7 @@ void Restart_ADC_DMA(void) {
 }
 
 void Task1_Start(void) {
-    // ģ������ 1 ���У�����������ݴ���
+    // ģ������ 1 ���У�����������ݴ���?
 	
 //    HAL_Delay(500);  // ���ﻻ��ʵ�ʵ������߼�
 	
@@ -193,8 +193,8 @@ int main(void)
 //  atk_md0350_show_string(0, 0, 300, 40, msg_author, ATK_MD0350_LCD_FONT_32, ATK_MD0350_RED);
 //	atk_md0350_draw_rect(0, 0, 300, 30, ATK_MD0350_BLACK);
   FFT_INIT();
-  HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_1);//�Լ���������
-	
+  HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_2);//�Լ���������
+	__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_2, 500);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -210,14 +210,14 @@ int main(void)
 		
 		show_value1 = signal_info_real.main_freq;
 		
-    snprintf(msg_author, sizeof(msg_author), "main_freq: %d", show_value1);  // 示例：显示第一个ADC值
+    snprintf(msg_author, sizeof(msg_author), "main_freq: %d", show_value1);  // 示例：显示第�?个ADC�?
 
     // 3. 在LCD上显示字符串
     atk_md0350_show_string(0, 0, 300, 40, msg_author, ATK_MD0350_LCD_FONT_32, ATK_MD0350_RED);
 		HAL_Delay(1000);
 		atk_md0350_fill(0, 0, 300, 40, ATK_MD0350_WHITE);
     /* USER CODE END WHILE */
-    
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -272,7 +272,7 @@ void SystemClock_Config(void)
 
 //void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc) {
 //    if (hadc->Instance == ADC1) {
-//        // 1. �ر� DMA ��������ж�
+//        // 1. �ر� DMA ��������ж�?
 //        __HAL_DMA_DISABLE_IT(&hdma_adc1, DMA_IT_TC);
 
 //        // 2. �������� 1
