@@ -38,8 +38,11 @@
 /**my define**/
 #define GRAPH_WIDTH 500     // 曲线显示的宽�?
 #define GRAPH_HEIGHT 120    // 曲线显示的高�?
-#define GRAPH_X_OFFSET 0    // 曲线显示的X偏移
+#define GRAPH_X_OFFSET 50    // 曲线显示的X偏移 ԭ����0
 #define GRAPH_Y_OFFSET 30    // 曲线显示的Y偏移
+#define GRAPH_Y_OFFSET_FFT 190    // 曲线显示的Y偏移
+
+
 #define GRAPH_COLOR ATK_MD0350_BLUE  // 曲线的颜�?
 #define BACKGROUND_COLOR ATK_MD0350_WHITE  // 背景颜色
 #define GRID_COLOR ATK_MD0350_LIGHTGRAY  // 网格颜色
@@ -238,8 +241,8 @@ int main(void)
 		signal_info_real=capture_and_FFT( FFT_LENGTH, ADC_1_Value_DMA,  SAMPLING_RATE);
 		size = sizeof(ADC_1_Value_DMA) / sizeof(ADC_1_Value_DMA[0]);
 		size_t_ = sizeof(fft_outputbuf) / sizeof(fft_outputbuf[0]); //显示傅里叶变换的数组
-	  DrawDynamicGraph(GRAPH_X_OFFSET, 160, GRAPH_WIDTH, GRAPH_HEIGHT, ADC_1_Value_DMA, size);
-		DrawDynamicGraph_float(GRAPH_X_OFFSET, GRAPH_Y_OFFSET, GRAPH_WIDTH, GRAPH_HEIGHT, fft_outputbuf, size_t_);
+	  DrawDynamicGraph(GRAPH_X_OFFSET, GRAPH_Y_OFFSET_FFT, GRAPH_WIDTH-GRAPH_X_OFFSET, GRAPH_HEIGHT, ADC_1_Value_DMA, size);//160
+		DrawDynamicGraph_float(GRAPH_X_OFFSET, GRAPH_Y_OFFSET, GRAPH_WIDTH-GRAPH_X_OFFSET, GRAPH_HEIGHT, fft_outputbuf, size_t_);
 		
     char msg_author[64];
 		

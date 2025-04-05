@@ -52,6 +52,9 @@ int16_t show_value1;
 int16_t show_value2;
 int16_t size;
 volatile uint8_t task1_done = 0;  // ï¿½ï¿½ï¿½ï¿½ 1 ×´Ì¬ï¿½ï¿½Ö¾
+
+extern float fft_outputbuf[FFT_LENGTH*2];     // FFT ·ùÖµÊä³ö
+
 /***********************/
 void DrawGrid(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint16_t color) {
     // ç»˜åˆ¶æ°´å¹³çº?
@@ -202,9 +205,16 @@ int main(void)
   while (1)
   {
 		signal_info_real=capture_and_FFT( FFT_LENGTH, ADC_1_Value_DMA,  SAMPLING_RATE);
-		size = sizeof(ADC_1_Value_DMA) / sizeof(ADC_1_Value_DMA[0]);
+//		size = sizeof(ADC_1_Value_DMA) / sizeof(ADC_1_Value_DMA[0]);
+//	
+//	DrawDynamicGraph(GRAPH_X_OFFSET, GRAPH_Y_OFFSET, GRAPH_WIDTH, GRAPH_HEIGHT, ADC_1_Value_DMA, size);
 		
-	DrawDynamicGraph(GRAPH_X_OFFSET, GRAPH_Y_OFFSET, GRAPH_WIDTH, GRAPH_HEIGHT, ADC_1_Value_DMA, size);
+		
+		
+		size = sizeof(fft_outputbuf) / sizeof(fft_outputbuf[0]);
+		
+	DrawDynamicGraph(GRAPH_X_OFFSET, GRAPH_Y_OFFSET, GRAPH_WIDTH, GRAPH_HEIGHT, (uint16_t *)fft_outputbuf, size);
+		
     char msg_author[64];
 		
 		

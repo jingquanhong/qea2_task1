@@ -1,4 +1,4 @@
---cpu=Cortex-M4.fp.sp
+--cpu=Cortex-M4.fp
 "qea_task1\startup_stm32f407xx.o"
 "qea_task1\main.o"
 "qea_task1\gpio.o"
