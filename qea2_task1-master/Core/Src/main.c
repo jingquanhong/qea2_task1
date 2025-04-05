@@ -53,6 +53,7 @@ extern float fft_outputbuf[FFT_LENGTH*2];
 extern uint16_t ADC_1_Value_DMA[FFT_LENGTH];//ADC��������
 extern SignalInfo_t signal_info_real;//�����ź���Ϣ
 int16_t show_value1;
+float show_vpp;
 int16_t show_value2;
 int16_t size;
 int16_t size_t_;
@@ -222,6 +223,7 @@ int main(void)
   MX_TIM8_Init();
   MX_FSMC_Init();
   /* USER CODE BEGIN 2 */
+	    HAL_Delay(100);
 	atk_md0350_init();
   atk_md0350_clear(ATK_MD0350_WHITE);
 //	char msg_author[64];
@@ -246,14 +248,24 @@ int main(void)
 		
     char msg_author[64];
 		
-		
 		show_value1 = signal_info_real.main_freq;
 		
     snprintf(msg_author, sizeof(msg_author), "main_freq: %d", show_value1);  // 示例：显示第�?个ADC�?
-
+		
     // 3. 在LCD上显示字符串
     atk_md0350_show_string(0, 0, 300, 40, msg_author, ATK_MD0350_LCD_FONT_32, ATK_MD0350_RED);
-		HAL_Delay(1000);
+		
+		
+//    char vpp[64];
+//		
+//		show_vpp = 3.3;
+//		
+//    snprintf(vpp, sizeof(vpp), "%.2f", show_vpp);  // 示例：显示第�?个ADC�?
+//		
+//    // 3. 在LCD上显示字符串
+//    atk_md0350_show_string(10, 190, 10, 10, vpp, ATK_MD0350_LCD_FONT_32, ATK_MD0350_RED);
+		
+		HAL_Delay(500);
 		atk_md0350_fill(0, 0, 300, 40, ATK_MD0350_WHITE);
     /* USER CODE END WHILE */
 
