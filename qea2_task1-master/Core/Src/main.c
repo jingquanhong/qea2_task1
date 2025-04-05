@@ -70,13 +70,13 @@ void DrawGrid(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint16_t 
 }
 
 // 绘制动�?�曲�?
-// 绘制动态曲线（支持 float 数组）
+// 绘制动�?�曲线（支持 float 数组�?
 void DrawDynamicGraph_float(uint16_t x, uint16_t y, uint16_t width, uint16_t height, float *data, uint32_t data_size) {
     static uint16_t prev_x = 0;
     static uint16_t prev_y = 0;
     uint16_t current_x, current_y;
     
-    // 1. 找到数组的最大值（用于归一化显示）
+    // 1. 找到数组的最大�?�（用于归一化显示）
     float max_value = 0.0f;
     for (uint32_t i = 0; i < data_size; i++) {
         if (data[i] > max_value) {
@@ -241,7 +241,7 @@ int main(void)
 		signal_info_real=capture_and_FFT( FFT_LENGTH, ADC_1_Value_DMA,  SAMPLING_RATE);
 		size = sizeof(ADC_1_Value_DMA) / sizeof(ADC_1_Value_DMA[0]);
 		size_t_ = sizeof(fft_outputbuf) / sizeof(fft_outputbuf[0]); //显示傅里叶变换的数组
-	  DrawDynamicGraph(GRAPH_X_OFFSET, GRAPH_Y_OFFSET_FFT, GRAPH_WIDTH-GRAPH_X_OFFSET, GRAPH_HEIGHT, ADC_1_Value_DMA, size);//160
+	  DrawDynamicGraph(GRAPH_X_OFFSET, GRAPH_Y_OFFSET_FFT, GRAPH_WIDTH-GRAPH_X_OFFSET, GRAPH_HEIGHT, ADC_1_Value_DMA, size/5);//160
 		DrawDynamicGraph_float(GRAPH_X_OFFSET, GRAPH_Y_OFFSET, GRAPH_WIDTH-GRAPH_X_OFFSET, GRAPH_HEIGHT, fft_outputbuf, size_t_);
 		
     char msg_author[64];
