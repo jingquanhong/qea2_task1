@@ -188,6 +188,8 @@ int main(void)
   MX_TIM8_Init();
   MX_FSMC_Init();
   /* USER CODE BEGIN 2 */
+			HAL_Delay(100);
+
 	atk_md0350_init();
   atk_md0350_clear(ATK_MD0350_WHITE);
 //	char msg_author[64];

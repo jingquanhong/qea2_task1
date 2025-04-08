@@ -226,6 +226,9 @@ int main(void)
 	    HAL_Delay(100);
 	atk_md0350_init();
   atk_md0350_clear(ATK_MD0350_WHITE);
+	
+//		HAL_Delay(100);
+
 //	char msg_author[64];
 //  snprintf(msg_author, sizeof(msg_author), "baoli");
 //  //atk_md0350_fill(180, 160, 180 + 250, 160 + 16, ATK_MD0350_BLACK);
@@ -234,6 +237,7 @@ int main(void)
   FFT_INIT();
   HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_2);//�Լ���������
 	__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_2, 500);
+	HAL_Delay(100);
   /* USER CODE END 2 */
 
   /* Infinite loop */

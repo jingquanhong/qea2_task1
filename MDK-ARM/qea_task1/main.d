@@ -46,10 +46,3 @@ qea_task1\main.o: ../Core/Inc/i2c.h
 qea_task1\main.o: ../Core/Inc/tim.h
 qea_task1\main.o: ../Core/Inc/gpio.h
 qea_task1\main.o: ../Core/Inc/fsmc.h
-qea_task1\main.o: ../Middlewares/ST/ARM/DSP/Inc/arm_math.h
-qea_task1\main.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-qea_task1\main.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
-qea_task1\main.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\float.h
-qea_task1\main.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
-qea_task1\main.o: ../user/atk_md0350.h
-qea_task1\main.o: ../user/fft.h

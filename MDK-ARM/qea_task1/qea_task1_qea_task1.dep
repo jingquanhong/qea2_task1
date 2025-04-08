@@ -1,6 +1,6 @@
 Dependencies for Project 'qea_task1', Target 'qea_task1': (DO NOT MODIFY !)
 F (startup_stm32f407xx.s)(0x67F01D53)(--cpu Cortex-M4.fp -g --apcs=interwork -I.\RTE\_qea_task1-IC:\Users\huawei\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\huawei\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.9.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include--pd "__UVISION_VERSION SETA 525" --pd "_RTE_ SETA 1" --pd "STM32F407xx SETA 1"--list startup_stm32f407xx.lst --xref -o qea_task1\startup_stm32f407xx.o --depend qea_task1\startup_stm32f407xx.d)
-F (../Core/Src/main.c)(0x67F02309)(--c99 -c --cpu Cortex-M4.fp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/ST/ARM/DSP/Inc -I ../user-I.\RTE\_qea_task1-IC:\Users\huawei\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\huawei\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.9.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="525" -D_RTE_ -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx-o qea_task1\main.o --omf_browse qea_task1\main.crf --depend qea_task1\main.d)
+F (../Core/Src/main.c)(0x67F4C6C3)(--c99 -c --cpu Cortex-M4.fp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/ST/ARM/DSP/Inc -I ../user-I.\RTE\_qea_task1-IC:\Users\huawei\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\huawei\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.9.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="525" -D_RTE_ -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx-o qea_task1\main.o --omf_browse qea_task1\main.crf --depend qea_task1\main.d)
 I (../Core/Inc/main.h)(0x67F0127D)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x66E07053)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x67F0127D)
@@ -47,13 +47,6 @@ I (../Core/Inc/i2c.h)(0x67F0127D)
 I (../Core/Inc/tim.h)(0x67F0127D)
 I (../Core/Inc/gpio.h)(0x67F0127D)
 I (../Core/Inc/fsmc.h)(0x67F0127D)
-I (../Middlewares/ST/ARM/DSP/Inc/arm_math.h)(0x67CD987B)
-I (d:\Keil_v5\ARM\ARMCC\include\string.h)(0x5E8E3CC2)
-I (d:\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E3CC2)
-I (d:\Keil_v5\ARM\ARMCC\include\float.h)(0x5E8E3CC2)
-I (d:\Keil_v5\ARM\ARMCC\include\limits.h)(0x5E8E3CC2)
-I (../user/atk_md0350.h)(0x67F0127E)
-I (../user/fft.h)(0x67F01AAD)
 F (../Core/Src/gpio.c)(0x67F0127D)(--c99 -c --cpu Cortex-M4.fp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/ST/ARM/DSP/Inc -I ../user-I.\RTE\_qea_task1-IC:\Users\huawei\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\huawei\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.9.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="525" -D_RTE_ -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx-o qea_task1\gpio.o --omf_browse qea_task1\gpio.crf --depend qea_task1\gpio.d)
 I (../Core/Inc/gpio.h)(0x67F0127D)
 I (../Core/Inc/main.h)(0x67F0127D)
@@ -1478,52 +1471,6 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x66E07053)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x66E07053)
 F (..\user\fft.c)(0x67F01691)(--c99 -c --cpu Cortex-M4.fp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/ST/ARM/DSP/Inc -I ../user-I.\RTE\_qea_task1-IC:\Users\huawei\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\huawei\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.9.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="525" -D_RTE_ -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx-o qea_task1\fft.o --omf_browse qea_task1\fft.crf --depend qea_task1\fft.d)
 I (..\user\fft.h)(0x67F01AAD)
-I (../Middlewares/ST/ARM/DSP/Inc/arm_math.h)(0x67CD987B)
-I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x66E0700F)
-I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5E8E3CC2)
-I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x66E0700F)
-I (d:\Keil_v5\ARM\ARMCC\include\string.h)(0x5E8E3CC2)
-I (d:\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E3CC2)
-I (d:\Keil_v5\ARM\ARMCC\include\float.h)(0x5E8E3CC2)
-I (d:\Keil_v5\ARM\ARMCC\include\limits.h)(0x5E8E3CC2)
-I (../Core/Inc/main.h)(0x67F0127D)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x66E07053)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x67F0127D)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x66E07053)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x66E07053)
-I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x66E07052)
-I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h)(0x66E07052)
-I (../Drivers/CMSIS/Include/core_cm4.h)(0x66E0700F)
-I (../Drivers/CMSIS/Include/cmsis_version.h)(0x66E0700F)
-I (../Drivers/CMSIS/Include/mpu_armv7.h)(0x66E0700F)
-I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h)(0x66E07052)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x66E07053)
-I (d:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5E8E3CC2)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h)(0x66E07053)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h)(0x66E07053)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h)(0x66E07053)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h)(0x66E07053)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h)(0x66E07053)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h)(0x66E07053)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h)(0x66E07053)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc.h)(0x66E07053)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_adc.h)(0x66E07053)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc_ex.h)(0x66E07053)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dac.h)(0x66E07053)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dac_ex.h)(0x66E07053)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h)(0x66E07053)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x66E07053)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x66E07053)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_sram.h)(0x66E07053)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_fsmc.h)(0x66E07053)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h)(0x66E07053)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c_ex.h)(0x66E07053)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x66E07053)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x66E07053)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x66E07053)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x66E07053)
-I (../Core/Inc/tim.h)(0x67F0127D)
-I (../Core/Inc/adc.h)(0x67F0127D)
 F (..\user\atk_md0350.c)(0x67F0127E)(--c99 -c --cpu Cortex-M4.fp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/ST/ARM/DSP/Inc -I ../user-I.\RTE\_qea_task1-IC:\Users\huawei\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\huawei\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.9.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="525" -D_RTE_ -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx-o qea_task1\atk_md0350.o --omf_browse qea_task1\atk_md0350.crf --depend qea_task1\atk_md0350.d)
 I (..\user\atk_md0350_fsmc.h)(0x67F0127E)
 I (../Core/Inc/gpio.h)(0x67F0127D)

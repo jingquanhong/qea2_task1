@@ -13,10 +13,12 @@ SignalInfo_t signal_info_real;//最后的信号信息
 
 void FFT_INIT(void)
 {
-	  arm_cfft_radix4_init_f32(&scfft,FFT_LENGTH,0,1);
+	  
 	
 		HAL_TIM_Base_Start(&htim3);//tim3定时触发ADc
     HAL_ADC_Start_DMA(&hadc1, (uint32_t*)ADC_1_Value_DMA, FFT_LENGTH);
+  	arm_cfft_radix4_init_f32(&scfft,FFT_LENGTH,0,1);
+	HAL_Delay(500);
 	
 }
 
