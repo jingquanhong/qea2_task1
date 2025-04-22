@@ -31,6 +31,31 @@
 #include "arm_math.h"
 #include "atk_md0350.h"
 #include "fft.h"
+#include "bsp_dwt.h"
+////dacÊä³öÏà¹Ø±äÁ¿
+//const uint16_t Sine12bit_50[50] = {
+//    0x0800,0x0901,0x09FD,0x0AF2,0x0BDA,0x0CB3,0x0D79,0x0E29,0x0EC0,0x0F3C,
+//    0x0F9B,0x0FDB,0x0FFB,0x0FDB,0x0F3C,0x0EC0,0x0E29,0x0D79,0x0CB3,0x0BDA,
+//    0x0AF2,0x09FD,0x0901,0x0800,0x06FF,0x0603,0x050E,0x0426,0x034D,0x0287,
+//    0x01D7,0x0140,0x00C4,0x0065,0x0025,0x0005,0x0025,0x0065,0x00C4,0x0140,
+//    0x01D7,0x0287,0x034D,0x0426,0x050E,0x0603,0x06FF,0x0800
+//};
+const uint16_t Sine12bit_50[50] = {
+    0x0800, 0x084D, 0x0899, 0x08E3, 0x092A, 0x096E, 0x09AD, 0x09E6, 0x0A18, 0x0A42,
+    0x0A63, 0x0A7C, 0x0A8B, 0x0A7C, 0x0A42, 0x0A18, 0x09E6, 0x09AD, 0x096E, 0x092A,
+    0x08E3, 0x0899, 0x084D, 0x0800, 0x07B3, 0x0767, 0x071D, 0x06D6, 0x0692, 0x0653,
+    0x061A, 0x05E8, 0x05BE, 0x059D, 0x0584, 0x0575, 0x0584, 0x059D, 0x05BE, 0x05E8,
+    0x061A, 0x0653, 0x0692, 0x06D6, 0x071D, 0x0767, 0x07B3, 0x0800
+};
+
+//uint32_t TIM8_arr=839;
+uint32_t TIM8_arr=335;
+uint32_t current_freq;
+uint32_t target_freq=10000;
+void start_dac_output(void);
+void frequency_change(int delt_freq,int flag1,int flag2);
+
+int key_flag1,key_flag2,key_flag3=0;
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -137,13 +162,31 @@ void Restart_ADC_DMA(void) {
     }
 }
 
+
+void key_scan(void);
+/* USER CODE END PTD */
+
+/* Private define ------------------------------------------------------------*/
+/* USER CODE BEGIN PD */
+static unsigned int task_count = 0;
+static float wasteT = 0; //å•ä½ç§’s
+static int time_count =0;//è®¡æ•°å˜é‡ ç”¨äºŽæŽ§åˆ¶é¢‘çŽ‡
+
+
+	int key0 = 0, key0_press = 0;
+  int key1 = 0, key1_press = 0;
+  int key2 = 0, key2_press = 0;
+
+int SAMPLING_RATE =20000;
+
+
 void Task1_Start(void) {
     // Ä£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1 ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿?
 	
 //    HAL_Delay(500);  // ï¿½ï¿½ï¿½ï»»ï¿½ï¿½Êµï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß¼ï¿½
 	
 	
-    signal_info_real=capture_and_FFT( FFT_LENGTH, ADC_1_Value_DMA,  SAMPLING_RATE);
+   signal_info_real=capture_and_FFT( FFT_LENGTH, ADC_1_Value_DMA,  SAMPLING_RATE);
 	
   size = sizeof(ADC_1_Value_DMA) / sizeof(ADC_1_Value_DMA[0]);//æ˜¾ç¤ºæ•°ç»„ADC_1_Value_DMA
 	size_t_ = sizeof(fft_outputbuf) / sizeof(fft_outputbuf[0]); //æ˜¾ç¤ºå‚…é‡Œå¶å˜æ¢çš„æ•°ç»„
@@ -155,12 +198,6 @@ void Task1_Start(void) {
     // ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½ DMA ï¿½É¼ï¿½
     Restart_ADC_DMA();
 }
-
-/* USER CODE END PTD */
-
-/* Private define ------------------------------------------------------------*/
-/* USER CODE BEGIN PD */
-
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -225,6 +262,7 @@ int main(void)
   MX_FSMC_Init();
   /* USER CODE BEGIN 2 */
 	    HAL_Delay(100);
+			DWT_Init(168);
 	atk_md0350_init();
   atk_md0350_clear(ATK_MD0350_WHITE);
 	
@@ -239,6 +277,8 @@ int main(void)
   HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_2);//ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_2, 500);
 	
+	
+  start_dac_output();//¿ªÆôdacÊä³ö
 	HAL_Delay(100);
   /* USER CODE END 2 */
 
@@ -246,12 +286,47 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+		
+		DWT_GetDeltaT(&task_count);
+		
+			if(time_count%1==0){
+				
 		signal_info_real=capture_and_FFT( FFT_LENGTH, ADC_1_Value_DMA,  SAMPLING_RATE);
 		size = sizeof(ADC_1_Value_DMA) / sizeof(ADC_1_Value_DMA[0]);
 		size_t_ = sizeof(fft_outputbuf) / sizeof(fft_outputbuf[0]); //æ˜¾ç¤ºå‚…é‡Œå¶å˜æ¢çš„æ•°ç»„
 	  DrawDynamicGraph(GRAPH_X_OFFSET, GRAPH_Y_OFFSET_FFT, GRAPH_WIDTH-GRAPH_X_OFFSET, GRAPH_HEIGHT, ADC_1_Value_DMA, size/5);//160
 		DrawDynamicGraph_float(GRAPH_X_OFFSET, GRAPH_Y_OFFSET, GRAPH_WIDTH-GRAPH_X_OFFSET, GRAPH_HEIGHT, fft_outputbuf, size_t_);
+				
+				
+			}
+			
+			
+			
+		if(time_count%2==0){
+			key_scan();
+		}
+			
+			
 		
+		
+		if(time_count%400==0){
+			
+			if(key0_press)
+			{
+				SAMPLING_RATE+=1000;//Ôö´ó²ÉÑùÆµÂÊ
+				
+			}
+			
+	  	frequency_change(100,key2_press,key1_press);//Ò»¿ªÊ¼10Khz
+			
+
+		
+			
+		}			
+		
+		if(time_count%500==0){
+			
+			
     char msg_author[64];
 		
 		show_value1 = signal_info_real.main_freq;
@@ -261,7 +336,10 @@ int main(void)
     // 3. åœ¨LCDä¸Šæ˜¾ç¤ºå­—ç¬¦ä¸²
     atk_md0350_show_string(0, 0, 300, 40, msg_author, ATK_MD0350_LCD_FONT_32, ATK_MD0350_RED);
 		
+			
 		
+		
+
 //    char vpp[64];
 //		
 //		show_vpp = 3.3;
@@ -271,8 +349,21 @@ int main(void)
 //    // 3. åœ¨LCDä¸Šæ˜¾ç¤ºå­—ç¬¦ä¸²
 //    atk_md0350_show_string(10, 190, 10, 10, vpp, ATK_MD0350_LCD_FONT_32, ATK_MD0350_RED);
 		
-		HAL_Delay(500);
+
 		atk_md0350_fill(0, 0, 300, 40, ATK_MD0350_WHITE);
+		
+	}
+		
+
+		
+		
+		
+		
+		float Task_T = DWT_GetDeltaT(&task_count);
+    wasteT = 0.001f - Task_T;
+		if(wasteT>=0)
+    DWT_Delay(wasteT);
+    time_count++;//1000hzè‡ªå¢ž
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -326,6 +417,111 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+void start_dac_output(void)//¿ªÆôdacÊä³ö
+{
+	    __HAL_TIM_SET_AUTORELOAD(&htim8, TIM8_arr);
+        HAL_TIM_Base_Start(&htim8);
+        HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)Sine12bit_50, 50, DAC_ALIGN_12B_R);
+
+}
+
+void frequency_change(int delt_freq,int flag1,int flag2)
+{
+
+		 current_freq = 3360000 / (TIM8_arr + 1);//³õÊ¼Öµ4000 Êµ¼ÊÆµÂÊÊÇ4000/50==80
+
+		if(flag1==1&&flag2==0)
+		{
+			 target_freq += delt_freq;
+       if (target_freq > 10000) target_freq = 10000;
+		}
+		if(flag1==0&&flag2==1)
+		{
+       target_freq -= delt_freq;
+       if (target_freq < 100) target_freq = 100;			
+			
+		}
+		if(flag1==flag2)
+		{
+			//do nothing
+			
+		}
+		TIM8_arr = (3360000 / target_freq) - 1;
+		__HAL_TIM_SET_AUTORELOAD(&htim8, TIM8_arr);//10kHZµÄÊä³öÖÜÆÚÆµÂÊ
+
+}
+
+void key_scan(void)
+{
+
+	
+	if (HAL_GPIO_ReadPin(KEY0_GPIO_Port, KEY0_Pin) == GPIO_PIN_RESET) {
+          DWT_Delay(0.05);
+       if (HAL_GPIO_ReadPin(KEY0_GPIO_Port, KEY0_Pin) == GPIO_PIN_RESET) {
+              if (!key0_press) {
+                  key0 = !key0;
+
+//                  if (key0) {
+
+//                  } else {
+
+//                  }
+              }
+              key0_press = 1;
+          }
+      } else {
+          key0_press = 0;
+      }
+			
+			
+		if (HAL_GPIO_ReadPin(KEY1_GPIO_Port, KEY1_Pin) == GPIO_PIN_RESET) {
+          DWT_Delay(0.05);
+          if (HAL_GPIO_ReadPin(KEY1_GPIO_Port, KEY1_Pin) == GPIO_PIN_RESET) {
+              if (!key1_press) {
+                  key1 = !key1;
+
+//                  if (key1) {
+//          
+//                  } else {
+
+//                          }
+              }
+
+              key1_press = 1;
+          }
+      } else {
+          key1_press = 0;
+      }
+
+			
+			
+      if (HAL_GPIO_ReadPin(KEY2_GPIO_Port, KEY2_Pin) == GPIO_PIN_RESET) {
+          DWT_Delay(0.05);
+          if (HAL_GPIO_ReadPin(KEY2_GPIO_Port, KEY2_Pin) == GPIO_PIN_RESET) {
+              if (!key2_press) {
+                  key2 = !key2;
+								
+//								    if (key2) {
+//          
+//                    } else {
+
+//                          }
+
+              }
+
+              key2_press = 1;
+          }
+      } else {
+          key2_press = 0;
+      }
+
+			
+			
+			
+			
+			
+}
 
 //void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc) {
 //    if (hadc->Instance == ADC1) {

@@ -2,12 +2,15 @@
 #define FFT_H
 
 #include "arm_math.h"
-#include "main.h"
+//#include "main.h"
 #include "tim.h"
 #include "adc.h"
 
 #define FFT_LENGTH		1024 		//FFT数组大小
-#define SAMPLING_RATE 20000  // ADC采样频率
+//#define SAMPLING_RATE 20000  // ADC采样频率
+
+
+
 //fft分析结构体
 typedef struct {
     float dc_offset;   // 直流分量

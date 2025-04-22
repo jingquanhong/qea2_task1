@@ -64,8 +64,6 @@ SignalInfo_t capture_and_FFT(uint32_t FFT_LENGTH_, uint16_t *ADC_1_Value_DMA, fl
 {
 	  SignalInfo_t signal_info = {0};
 
-	  
-
     arm_cfft_radix4_instance_f32 scfft;  // FFT ½á¹¹Ìå
     
 

@@ -8,6 +8,7 @@ qea_task1\fft.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 qea_task1\fft.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 qea_task1\fft.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\float.h
 qea_task1\fft.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
+qea_task1\fft.o: ../Core/Inc/tim.h
 qea_task1\fft.o: ../Core/Inc/main.h
 qea_task1\fft.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 qea_task1\fft.o: ../Core/Inc/stm32f4xx_hal_conf.h
@@ -45,5 +46,4 @@ qea_task1\fft.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 qea_task1\fft.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 qea_task1\fft.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 qea_task1\fft.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
-qea_task1\fft.o: ../Core/Inc/tim.h
 qea_task1\fft.o: ../Core/Inc/adc.h

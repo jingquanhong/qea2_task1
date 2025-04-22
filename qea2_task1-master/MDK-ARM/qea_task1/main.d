@@ -53,3 +53,4 @@ qea_task1\main.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\float.h
 qea_task1\main.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
 qea_task1\main.o: ../user/atk_md0350.h
 qea_task1\main.o: ../user/fft.h
+qea_task1\main.o: ../user/bsp_dwt.h

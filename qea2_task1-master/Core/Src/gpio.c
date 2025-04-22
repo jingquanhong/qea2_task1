@@ -55,10 +55,10 @@ void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOF, GPIO_PIN_6|AMP2_PIN_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : PE4 */
-  GPIO_InitStruct.Pin = GPIO_PIN_4;
+  /*Configure GPIO pins : KEY2_Pin KEY1_Pin KEY0_Pin */
+  GPIO_InitStruct.Pin = KEY2_Pin|KEY1_Pin|KEY0_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PF6 AMP2_PIN_Pin */
