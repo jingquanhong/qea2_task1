@@ -209,6 +209,7 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
+		HAL_Delay(1000);
 
   /* USER CODE END SysInit */
 
@@ -237,6 +238,7 @@ int main(void)
   FFT_INIT();
   HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_2);//�Լ���������
 	__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_2, 500);
+	
 	HAL_Delay(100);
   /* USER CODE END 2 */
 
