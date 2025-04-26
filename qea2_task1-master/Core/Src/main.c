@@ -58,11 +58,11 @@ const uint16_t Sine12bit_50[50] = {
 //};
 
 //uint32_t TIM8_arr=839;
-uint32_t TIM8_arr=335;
+uint32_t TIM2_arr=8400-1;
 uint32_t current_freq;
-uint32_t target_freq=1000;
+uint32_t target_freq=100;
 void start_dac_output(void);
-void frequency_change(int delt_freq,int flag1,int flag2);
+void frequency_change(int delt_freq);
 
 int key_flag1,key_flag2,key_flag3=0;
 /* USER CODE END Includes */
@@ -208,7 +208,37 @@ void Task1_Start(void) {
     Restart_ADC_DMA();
 }
 
-int trigger;
+int trigger1;
+int trigger2;
+
+
+float last_amp_result;
+float amp_result;
+float amp_raw;
+
+
+// 一阶低通滤波器，alpha取0~1之间，越接近1反应越快，越小越平滑
+float low_pass_filter(float current_value, float last_filtered_value, float alpha)
+{
+    return alpha * current_value + (1.0f - alpha) * last_filtered_value;
+}
+
+// 计算数组的最大值减最小值
+float max_min_diff(uint16_t *array, int length)
+{
+    if (length <= 0) return 0.0f;
+
+    float max_val = array[0];
+    float min_val = array[0];
+    for (int i = 1; i < length; i++) {
+        if (array[i] > max_val) max_val = array[i];
+        if (array[i] < min_val) min_val = array[i];
+    }
+    return max_val - min_val;
+}
+float a=0.005;
+
+
 
 /* USER CODE END PD */
 
@@ -299,6 +329,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
 		
 		DWT_GetDeltaT(&task_count);
 		
@@ -314,11 +345,12 @@ int main(void)
 	
 		if(time_count%2==0){
 			key_scan();
-						if(trigger)
-			{
-				SAMPLING_RATE+=1000;//增大采样频率
-				
-			}
+//						if(trigger1)
+//			{
+//				SAMPLING_RATE+=1000;//增大采样频率
+//				
+//			}
+			frequency_change(100);//一开始10Khz
 		}
 
 		
@@ -331,6 +363,7 @@ int main(void)
 		}			
 		
 		if(time_count%3==0){
+			
 			
 			
 
@@ -353,8 +386,10 @@ int main(void)
 		
 	}
 		
-
-		
+     amp_raw=max_min_diff(ADC_1_Value_DMA,  FFT_LENGTH);
+	   amp_result=low_pass_filter(amp_raw,last_amp_result,a);
+	
+		last_amp_result=amp_result;
 		
 		
 		
@@ -433,35 +468,35 @@ void start_dac_output(void)//开启dac输出
 {
 //	    __HAL_TIM_SET_AUTORELOAD(&htim8, TIM8_arr);
         HAL_TIM_Base_Start(&htim2);
-	HAL_TIM_Base_Start(&htim8);
+	      HAL_TIM_Base_Start(&htim8);
         HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)Sine12bit_50, 50, DAC_ALIGN_12B_R);
       	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)Sine12bit_50, 50, DAC_ALIGN_12B_R);
 
 }
 
-void frequency_change(int delt_freq,int flag1,int flag2)
+void frequency_change(int delt_freq)
 {
 
-		 current_freq = 3360000 / (TIM8_arr + 1);//初始值4000 实际频率是4000/50==80
-
-		if(flag1==1&&flag2==0)
+		if(trigger1==1)
 		{
 			 target_freq += delt_freq;
        if (target_freq > 10000) target_freq = 10000;
-		}
-		if(flag1==0&&flag2==1)
-		{
-       target_freq -= delt_freq;
-       if (target_freq < 100) target_freq = 100;			
+//		}
+//		
+//		else if(trigger1==0)
+//		{
+//       target_freq -= delt_freq;
+//       if (target_freq < 100) target_freq = 100;			
 			
 		}
-		if(flag1==flag2)
-		{
-			//do nothing
-			
-		}
-		TIM8_arr = (3360000 / target_freq) - 1;
-		__HAL_TIM_SET_AUTORELOAD(&htim8, TIM8_arr);//10kHZ的输出周期频率
+//		else if(trigger1==trigger2)
+//		{
+//			//do nothing
+//			
+//		}
+		
+		TIM2_arr = (84000000 / (target_freq*50)) - 1;
+		__HAL_TIM_SET_AUTORELOAD(&htim2, TIM2_arr);//10kHZ的输出周期频率
 
 }
 
@@ -490,11 +525,11 @@ void key_scan(void)
 			
 			if(last_key0==0&&key0_press==1)//感知上升沿
 			{
-				trigger=1;
+				trigger1=1;
 				
 			
 			}
-			else{trigger=0;}
+			else{trigger1=0;}
 			
 			
 		if (HAL_GPIO_ReadPin(KEY1_GPIO_Port, KEY1_Pin) == GPIO_PIN_RESET) {
@@ -515,6 +550,14 @@ void key_scan(void)
       } else {
           key1_press = 0;
       }
+			
+			if(last_key1==0&&key1_press==1)//感知上升沿
+			{
+				trigger2=1;
+				
+			
+			}
+			else{trigger2=0;}
 
 			
 			

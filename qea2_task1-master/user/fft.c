@@ -9,6 +9,10 @@ uint16_t ADC_1_Value_DMA[FFT_LENGTH]={0};//ADC采样数组
 float32_t fft_inputbuf[FFT_LENGTH * 2];  // FFT 复数输入（实部+虚部）
 float32_t  fft_outputbuf[FFT_LENGTH*2];     // FFT 幅值输出
 
+
+
+//float32_t  fft_outputbuf[FFT_LENGTH];     // FFT 幅值输出
+
 SignalInfo_t signal_info_real;//最后的信号信息
 
 void FFT_INIT(void)
@@ -22,7 +26,24 @@ void FFT_INIT(void)
 	
 }
 
+    float max_value1 = 0, max_value2 = 0;
+    int max_index1 = 0, max_index2 = 0;
 
+
+
+float max;
+float32_t max_find(float32_t *array, int length)
+{
+    if (length <= 0) return 0.0f;
+
+    float max_val = array[0];
+
+    for (int i = 1; i < length; i++) {
+        if (array[i] > max_val) max_val = array[i];
+      
+    }
+    return 2*max_val/FFT_LENGTH;
+}
 
 //分析FFT输出数组
 SignalInfo_t analyze_fft(float *fft_outputbuf, int fft_length, float fs) 
@@ -32,8 +53,6 @@ SignalInfo_t analyze_fft(float *fft_outputbuf, int fft_length, float fs)
     // 直流分量
     signal_info.dc_offset = fft_outputbuf[0] / fft_length;
 
-    float max_value1 = 0, max_value2 = 0;
-    int max_index1 = 0, max_index2 = 0;
 
     
     for (int i = 1; i < fft_length / 2; i++) {
@@ -47,6 +66,9 @@ SignalInfo_t analyze_fft(float *fft_outputbuf, int fft_length, float fs)
             max_index2 = i;
         }
     }
+		
+		
+		
 
     // 计算谐波频率
     signal_info.main_freq = (float)max_index1 * fs / fft_length;
@@ -55,6 +77,11 @@ SignalInfo_t analyze_fft(float *fft_outputbuf, int fft_length, float fs)
     // 计算幅值
     signal_info.main_amp = (2.0f * max_value1) / fft_length;
     signal_info.second_amp = (2.0f * max_value2) / fft_length;
+		
+		
+		signal_info.main_amp = max_find( fft_outputbuf, FFT_LENGTH);
+		
+		
 
     return signal_info;
 }

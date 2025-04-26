@@ -22,8 +22,9 @@ typedef struct {
 
 void FFT_INIT(void);
 
+extern float32_t  fft_outputbuf[FFT_LENGTH*2];     // FFT 幅值输出
 
-
+extern uint16_t ADC_1_Value_DMA[FFT_LENGTH];//ADC采样数组
 SignalInfo_t capture_and_FFT(uint32_t FFT_LENGTH_, uint16_t *ADC_1_Value_DMA, float SAMPLING_RATE_);
 
 #endif
