@@ -40,18 +40,27 @@
 //    0x01D7,0x0140,0x00C4,0x0065,0x0025,0x0005,0x0025,0x0065,0x00C4,0x0140,
 //    0x01D7,0x0287,0x034D,0x0426,0x050E,0x0603,0x06FF,0x0800
 //};
+
+
 const uint16_t Sine12bit_50[50] = {
-    0x0800, 0x084D, 0x0899, 0x08E3, 0x092A, 0x096E, 0x09AD, 0x09E6, 0x0A18, 0x0A42,
-    0x0A63, 0x0A7C, 0x0A8B, 0x0A7C, 0x0A42, 0x0A18, 0x09E6, 0x09AD, 0x096E, 0x092A,
-    0x08E3, 0x0899, 0x084D, 0x0800, 0x07B3, 0x0767, 0x071D, 0x06D6, 0x0692, 0x0653,
-    0x061A, 0x05E8, 0x05BE, 0x059D, 0x0584, 0x0575, 0x0584, 0x059D, 0x05BE, 0x05E8,
-    0x061A, 0x0653, 0x0692, 0x06D6, 0x071D, 0x0767, 0x07B3, 0x0800
+    0x0800,0x0901,0x09FD,0x0AF2,0x0BDA,0x0CB3,0x0D79,0x0E29,0x0EC0,0x0F3C,
+    0x0F9B,0x0FDB,0x0FFB,0x0FDB,0x0F3C,0x0EC0,0x0E29,0x0D79,0x0CB3,0x0BDA,
+    0x0AF2,0x09FD,0x0901,0x0800,0x06FF,0x0603,0x050E,0x0426,0x034D,0x0287,
+    0x01D7,0x0140,0x00C4,0x0065,0x0025,0x0005,0x0025,0x0065,0x00C4,0x0140,
+    0x01D7,0x0287,0x034D,0x0426,0x050E,0x0603,0x06FF,0x0800
 };
+//const uint16_t Sine12bit_50[50] = {
+//    0x0800, 0x084D, 0x0899, 0x08E3, 0x092A, 0x096E, 0x09AD, 0x09E6, 0x0A18, 0x0A42,
+//    0x0A63, 0x0A7C, 0x0A8B, 0x0A7C, 0x0A42, 0x0A18, 0x09E6, 0x09AD, 0x096E, 0x092A,
+//    0x08E3, 0x0899, 0x084D, 0x0800, 0x07B3, 0x0767, 0x071D, 0x06D6, 0x0692, 0x0653,
+//    0x061A, 0x05E8, 0x05BE, 0x059D, 0x0584, 0x0575, 0x0584, 0x059D, 0x05BE, 0x05E8,
+//    0x061A, 0x0653, 0x0692, 0x06D6, 0x071D, 0x0767, 0x07B3, 0x0800
+//};
 
 //uint32_t TIM8_arr=839;
 uint32_t TIM8_arr=335;
 uint32_t current_freq;
-uint32_t target_freq=10000;
+uint32_t target_freq=1000;
 void start_dac_output(void);
 void frequency_change(int delt_freq,int flag1,int flag2);
 
@@ -177,7 +186,7 @@ static int time_count =0;//è®¡æ•°å˜é‡ ç”¨äºŽæŽ§åˆ¶é¢‘çŽ‡
   int key1 = 0, key1_press = 0;
   int key2 = 0, key2_press = 0;
 
-int SAMPLING_RATE =20000;
+int SAMPLING_RATE =100000;//20000
 
 
 void Task1_Start(void) {
@@ -198,6 +207,9 @@ void Task1_Start(void) {
     // ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½ DMA ï¿½É¼ï¿½
     Restart_ADC_DMA();
 }
+
+int trigger;
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -253,15 +265,16 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_DMA_Init();
-  MX_ADC1_Init();
   MX_I2C2_Init();
   MX_TIM1_Init();
   MX_TIM3_Init();
   MX_DAC_Init();
   MX_TIM8_Init();
   MX_FSMC_Init();
+  MX_TIM2_Init();
+  MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
-	    HAL_Delay(100);
+	    HAL_Delay(500);
 			DWT_Init(168);
 	atk_md0350_init();
   atk_md0350_clear(ATK_MD0350_WHITE);
@@ -296,45 +309,31 @@ int main(void)
 		size_t_ = sizeof(fft_outputbuf) / sizeof(fft_outputbuf[0]); //æ˜¾ç¤ºå‚…é‡Œå¶å˜æ¢çš„æ•°ç»„
 	  DrawDynamicGraph(GRAPH_X_OFFSET, GRAPH_Y_OFFSET_FFT, GRAPH_WIDTH-GRAPH_X_OFFSET, GRAPH_HEIGHT, ADC_1_Value_DMA, size/5);//160
 		DrawDynamicGraph_float(GRAPH_X_OFFSET, GRAPH_Y_OFFSET, GRAPH_WIDTH-GRAPH_X_OFFSET, GRAPH_HEIGHT, fft_outputbuf, size_t_);
-				
-				
-			}
-			
-			
-			
+	
+		}
+	
 		if(time_count%2==0){
 			key_scan();
-		}
-			
-			
-		
-		
-		if(time_count%400==0){
-			
-			if(key0_press)
+						if(trigger)
 			{
 				SAMPLING_RATE+=1000;//Ôö´ó²ÉÑùÆµÂÊ
 				
 			}
-			
-	  	frequency_change(100,key2_press,key1_press);//Ò»¿ªÊ¼10Khz
-			
+		}
 
 		
+		if(time_count%400==0){
 			
+
+			
+//	  	frequency_change(100,key2_press,key1_press);//Ò»¿ªÊ¼10Khz
+
 		}			
 		
-		if(time_count%500==0){
+		if(time_count%3==0){
 			
 			
-    char msg_author[64];
-		
-		show_value1 = signal_info_real.main_freq;
-		
-    snprintf(msg_author, sizeof(msg_author), "main_freq: %d", show_value1);  // ç¤ºä¾‹ï¼šæ˜¾ç¤ºç¬¬ä¸?ä¸ªADCå€?
-		
-    // 3. åœ¨LCDä¸Šæ˜¾ç¤ºå­—ç¬¦ä¸²
-    atk_md0350_show_string(0, 0, 300, 40, msg_author, ATK_MD0350_LCD_FONT_32, ATK_MD0350_RED);
+
 		
 			
 		
@@ -364,6 +363,18 @@ int main(void)
 		if(wasteT>=0)
     DWT_Delay(wasteT);
     time_count++;//1000hzè‡ªå¢ž
+		
+		
+		
+		
+		    char msg_author[64];
+		
+		show_value1 = signal_info_real.main_freq;
+		
+    snprintf(msg_author, sizeof(msg_author), "main_freq: %d", show_value1);  // ç¤ºä¾‹ï¼šæ˜¾ç¤ºç¬¬ä¸?ä¸ªADCå€?
+		
+    // 3. åœ¨LCDä¸Šæ˜¾ç¤ºå­—ç¬¦ä¸²
+    atk_md0350_show_string(0, 0, 300, 40, msg_author, ATK_MD0350_LCD_FONT_32, ATK_MD0350_RED);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -420,9 +431,11 @@ void SystemClock_Config(void)
 
 void start_dac_output(void)//¿ªÆôdacÊä³ö
 {
-	    __HAL_TIM_SET_AUTORELOAD(&htim8, TIM8_arr);
-        HAL_TIM_Base_Start(&htim8);
+//	    __HAL_TIM_SET_AUTORELOAD(&htim8, TIM8_arr);
+        HAL_TIM_Base_Start(&htim2);
+	HAL_TIM_Base_Start(&htim8);
         HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t*)Sine12bit_50, 50, DAC_ALIGN_12B_R);
+      	HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_2, (uint32_t*)Sine12bit_50, 50, DAC_ALIGN_12B_R);
 
 }
 
@@ -452,6 +465,7 @@ void frequency_change(int delt_freq,int flag1,int flag2)
 
 }
 
+int last_key1,last_key2,last_key0;
 void key_scan(void)
 {
 
@@ -473,6 +487,14 @@ void key_scan(void)
       } else {
           key0_press = 0;
       }
+			
+			if(last_key0==0&&key0_press==1)//¸ÐÖªÉÏÉýÑØ
+			{
+				trigger=1;
+				
+			
+			}
+			else{trigger=0;}
 			
 			
 		if (HAL_GPIO_ReadPin(KEY1_GPIO_Port, KEY1_Pin) == GPIO_PIN_RESET) {
@@ -520,6 +542,9 @@ void key_scan(void)
 			
 			
 			
+			last_key1=key1_press;
+			last_key2=key2_press;
+			last_key0=key0_press;
 			
 }
 

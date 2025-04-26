@@ -3,9 +3,9 @@
 <title>Static Call Graph - [qea_task1\qea_task1.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image qea_task1\qea_task1.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Tue Apr 22 19:13:51 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Sat Apr 26 21:01:09 2025
 <BR><P>
-<H3>Maximum Stack Usage =        352 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        368 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 __rt_entry_main &rArr; main &rArr; atk_md0350_init &rArr; atk_md0350_fsmc_init &rArr; HAL_SRAM_Init &rArr; HAL_SRAM_MspInit &rArr; HAL_FSMC_MspInit &rArr; HAL_GPIO_Init
 <P>
@@ -55,7 +55,7 @@ Function Pointers
  <LI><a href="#[1b]">DMA1_Stream3_IRQHandler</a> from startup_stm32f407xx.o(.text) referenced from startup_stm32f407xx.o(RESET)
  <LI><a href="#[1c]">DMA1_Stream4_IRQHandler</a> from startup_stm32f407xx.o(.text) referenced from startup_stm32f407xx.o(RESET)
  <LI><a href="#[1d]">DMA1_Stream5_IRQHandler</a> from stm32f4xx_it.o(i.DMA1_Stream5_IRQHandler) referenced from startup_stm32f407xx.o(RESET)
- <LI><a href="#[1e]">DMA1_Stream6_IRQHandler</a> from startup_stm32f407xx.o(.text) referenced from startup_stm32f407xx.o(RESET)
+ <LI><a href="#[1e]">DMA1_Stream6_IRQHandler</a> from stm32f4xx_it.o(i.DMA1_Stream6_IRQHandler) referenced from startup_stm32f407xx.o(RESET)
  <LI><a href="#[3c]">DMA1_Stream7_IRQHandler</a> from startup_stm32f407xx.o(.text) referenced from startup_stm32f407xx.o(RESET)
  <LI><a href="#[45]">DMA2_Stream0_IRQHandler</a> from stm32f4xx_it.o(i.DMA2_Stream0_IRQHandler) referenced from startup_stm32f407xx.o(RESET)
  <LI><a href="#[46]">DMA2_Stream1_IRQHandler</a> from startup_stm32f407xx.o(.text) referenced from startup_stm32f407xx.o(RESET)
@@ -265,7 +265,7 @@ Global Symbols
 <P><STRONG><a name="[127]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[78]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 352 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 368 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_main &rArr; main &rArr; atk_md0350_init &rArr; atk_md0350_fsmc_init &rArr; HAL_SRAM_Init &rArr; HAL_SRAM_MspInit &rArr; HAL_FSMC_MspInit &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -338,9 +338,6 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f407xx.o(RESET)
 </UL>
 <P><STRONG><a name="[1c]"></a>DMA1_Stream4_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f407xx.o(.text))
-<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f407xx.o(RESET)
-</UL>
-<P><STRONG><a name="[1e]"></a>DMA1_Stream6_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f407xx.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f407xx.o(RESET)
 </UL>
 <P><STRONG><a name="[3c]"></a>DMA1_Stream7_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f407xx.o(.text))
@@ -568,12 +565,12 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_d
 </UL>
 
-<P><STRONG><a name="[f0]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text))
+<P><STRONG><a name="[f1]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_memcpy4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;capture_and_FFT
+<BR>[Called By]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;capture_and_FFT
 <LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analyze_fft
+<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analyze_fft
 </UL>
 
 <P><STRONG><a name="[12b]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
@@ -590,14 +587,14 @@ Global Symbols
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_FSMC_MspInit
 <LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DAC_MspInit
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_MspInit
-<LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;capture_and_FFT
-<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_init
+<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;capture_and_FFT
+<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_init
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM1_Init
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init
 <LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_FSMC_Init
-<LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
-<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_fsmc_init
-<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analyze_fft
+<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
+<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_fsmc_init
+<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analyze_fft
 </UL>
 
 <P><STRONG><a name="[12e]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 4 bytes, rt_memclr_w.o(.text), UNUSED)
@@ -705,11 +702,11 @@ Global Symbols
 <LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;arm_radix4_butterfly_f32
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;arm_bitreversal_f32
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;capture_and_FFT
+<BR>[Called By]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;capture_and_FFT
 </UL>
 
 <P><STRONG><a name="[a4]"></a>arm_cfft_radix4_init_f32</STRONG> (Thumb, 148 bytes, Stack size 0 bytes, arm_cfft_radix4_init_f32.o(.text.arm_cfft_radix4_init_f32))
-<BR><BR>[Called By]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;capture_and_FFT
+<BR><BR>[Called By]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;capture_and_FFT
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FFT_INIT
 </UL>
 
@@ -718,7 +715,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_sqrtf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;capture_and_FFT
+<BR>[Called By]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;capture_and_FFT
 </UL>
 
 <P><STRONG><a name="[8d]"></a>arm_radix4_butterfly_f32</STRONG> (Thumb, 858 bytes, Stack size 68 bytes, arm_cfft_radix4_f32.o(.text.arm_radix4_butterfly_f32))
@@ -789,6 +786,13 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f407xx.o(RESET)
 </UL>
+<P><STRONG><a name="[1e]"></a>DMA1_Stream6_IRQHandler</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f4xx_it.o(i.DMA1_Stream6_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = DMA1_Stream6_IRQHandler &rArr; HAL_DMA_IRQHandler
+</UL>
+<BR>[Calls]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA_IRQHandler
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f407xx.o(RESET)
+</UL>
 <P><STRONG><a name="[45]"></a>DMA2_Stream0_IRQHandler</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f4xx_it.o(i.DMA2_Stream0_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = DMA2_Stream0_IRQHandler &rArr; HAL_DMA_IRQHandler
 </UL>
@@ -796,9 +800,9 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f407xx.o(RESET)
 </UL>
-<P><STRONG><a name="[102]"></a>DWT_Delay</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, bsp_dwt.o(i.DWT_Delay))
+<P><STRONG><a name="[103]"></a>DWT_Delay</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, bsp_dwt.o(i.DWT_Delay))
 <BR><BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;key_scan
+<LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;key_scan
 </UL>
 
 <P><STRONG><a name="[9b]"></a>DWT_GetDeltaT</STRONG> (Thumb, 60 bytes, Stack size 16 bytes, bsp_dwt.o(i.DWT_GetDeltaT))
@@ -809,7 +813,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[103]"></a>DWT_Init</STRONG> (Thumb, 54 bytes, Stack size 0 bytes, bsp_dwt.o(i.DWT_Init))
+<P><STRONG><a name="[104]"></a>DWT_Init</STRONG> (Thumb, 54 bytes, Stack size 0 bytes, bsp_dwt.o(i.DWT_Init))
 <BR><BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -837,8 +841,9 @@ Global Symbols
 <P><STRONG><a name="[ac]"></a>Error_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, main.o(i.Error_Handler))
 <BR><BR>[Called By]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DAC_MspInit
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_MspInit
-<LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM8_Init
-<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM3_Init
+<LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM8_Init
+<LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM3_Init
+<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM2_Init
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM1_Init
 <LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_I2C2_Init
 <LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_FSMC_Init
@@ -970,15 +975,15 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[b1]"></a>HAL_DAC_Init</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, stm32f4xx_hal_dac.o(i.HAL_DAC_Init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = HAL_DAC_Init &rArr; HAL_DAC_MspInit &rArr; HAL_GPIO_Init
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = HAL_DAC_Init &rArr; HAL_DAC_MspInit &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DAC_MspInit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_DAC_Init
 </UL>
 
-<P><STRONG><a name="[b2]"></a>HAL_DAC_MspInit</STRONG> (Thumb, 154 bytes, Stack size 40 bytes, dac.o(i.HAL_DAC_MspInit))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = HAL_DAC_MspInit &rArr; HAL_GPIO_Init
+<P><STRONG><a name="[b2]"></a>HAL_DAC_MspInit</STRONG> (Thumb, 220 bytes, Stack size 64 bytes, dac.o(i.HAL_DAC_MspInit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = HAL_DAC_MspInit &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SetPriority
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_EnableIRQ
@@ -995,22 +1000,23 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA_Start_IT
 </UL>
-<BR>[Called By]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;start_dac_output
+<BR>[Called By]<UL><LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;start_dac_output
 </UL>
 
 <P><STRONG><a name="[9a]"></a>HAL_DMA_IRQHandler</STRONG> (Thumb, 412 bytes, Stack size 32 bytes, stm32f4xx_hal_dma.o(i.HAL_DMA_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = HAL_DMA_IRQHandler
 </UL>
 <BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA2_Stream0_IRQHandler
+<LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Stream6_IRQHandler
 <LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Stream5_IRQHandler
 </UL>
 
 <P><STRONG><a name="[ab]"></a>HAL_DMA_Init</STRONG> (Thumb, 206 bytes, Stack size 24 bytes, stm32f4xx_hal_dma.o(i.HAL_DMA_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = HAL_DMA_Init &rArr; DMA_CheckFifoParam
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_CheckFifoParam
+<BR>[Calls]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
+<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_CheckFifoParam
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_CalcBaseAndBitshift
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DAC_MspInit
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_MspInit
@@ -1032,7 +1038,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FFT_INIT
 <LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_reg_init
+<LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_reg_init
 </UL>
 
 <P><STRONG><a name="[aa]"></a>HAL_GPIO_Init</STRONG> (Thumb, 450 bytes, Stack size 40 bytes, stm32f4xx_hal_gpio.o(i.HAL_GPIO_Init))
@@ -1043,19 +1049,19 @@ Global Symbols
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_FSMC_MspInit
 <LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DAC_MspInit
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_MspInit
-<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_init
+<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_init
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init
-<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_fsmc_init
+<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_fsmc_init
 </UL>
 
-<P><STRONG><a name="[101]"></a>HAL_GPIO_ReadPin</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f4xx_hal_gpio.o(i.HAL_GPIO_ReadPin))
-<BR><BR>[Called By]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;key_scan
+<P><STRONG><a name="[102]"></a>HAL_GPIO_ReadPin</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f4xx_hal_gpio.o(i.HAL_GPIO_ReadPin))
+<BR><BR>[Called By]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;key_scan
 </UL>
 
 <P><STRONG><a name="[e6]"></a>HAL_GPIO_WritePin</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f4xx_hal_gpio.o(i.HAL_GPIO_WritePin))
-<BR><BR>[Called By]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_init
+<BR><BR>[Called By]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_init
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init
-<LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_backlight_on
+<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_backlight_on
 </UL>
 
 <P><STRONG><a name="[b6]"></a>HAL_GetTick</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f4xx_hal.o(i.HAL_GetTick))
@@ -1083,7 +1089,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_Init
 </UL>
 
-<P><STRONG><a name="[ed]"></a>HAL_IncTick</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f4xx_hal.o(i.HAL_IncTick))
+<P><STRONG><a name="[ee]"></a>HAL_IncTick</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f4xx_hal.o(i.HAL_IncTick))
 <BR><BR>[Called By]<UL><LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
 </UL>
 
@@ -1139,7 +1145,7 @@ Global Symbols
 <LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
+<BR>[Called By]<UL><LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 </UL>
 
 <P><STRONG><a name="[bd]"></a>HAL_RCC_GetPCLK1Freq</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, stm32f4xx_hal_rcc.o(i.HAL_RCC_GetPCLK1Freq))
@@ -1159,7 +1165,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
+<BR>[Called By]<UL><LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 </UL>
 
 <P><STRONG><a name="[c8]"></a>HAL_SRAM_Init</STRONG> (Thumb, 92 bytes, Stack size 16 bytes, stm32f4xx_hal_sram.o(i.HAL_SRAM_Init))
@@ -1171,7 +1177,7 @@ Global Symbols
 <LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FSMC_NORSRAM_Extended_Timing_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_FSMC_Init
-<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_fsmc_init
+<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_fsmc_init
 </UL>
 
 <P><STRONG><a name="[c9]"></a>HAL_SRAM_MspInit</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, fsmc.o(i.HAL_SRAM_MspInit))
@@ -1199,8 +1205,9 @@ Global Symbols
 <P><STRONG><a name="[e9]"></a>HAL_TIMEx_MasterConfigSynchronization</STRONG> (Thumb, 116 bytes, Stack size 16 bytes, stm32f4xx_hal_tim_ex.o(i.HAL_TIMEx_MasterConfigSynchronization))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = HAL_TIMEx_MasterConfigSynchronization
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM8_Init
-<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM3_Init
+<BR>[Called By]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM8_Init
+<LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM3_Init
+<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM2_Init
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM1_Init
 </UL>
 
@@ -1210,12 +1217,13 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_MspInit
 <LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Base_SetConfig
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM8_Init
-<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM3_Init
+<BR>[Called By]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM8_Init
+<LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM3_Init
+<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM2_Init
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM1_Init
 </UL>
 
-<P><STRONG><a name="[ce]"></a>HAL_TIM_Base_MspInit</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, tim.o(i.HAL_TIM_Base_MspInit))
+<P><STRONG><a name="[ce]"></a>HAL_TIM_Base_MspInit</STRONG> (Thumb, 92 bytes, Stack size 8 bytes, tim.o(i.HAL_TIM_Base_MspInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = HAL_TIM_Base_MspInit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Init
@@ -1223,7 +1231,7 @@ Global Symbols
 
 <P><STRONG><a name="[a2]"></a>HAL_TIM_Base_Start</STRONG> (Thumb, 90 bytes, Stack size 0 bytes, stm32f4xx_hal_tim.o(i.HAL_TIM_Base_Start))
 <BR><BR>[Called By]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FFT_INIT
-<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;start_dac_output
+<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;start_dac_output
 </UL>
 
 <P><STRONG><a name="[d0]"></a>HAL_TIM_ConfigClockSource</STRONG> (Thumb, 220 bytes, Stack size 16 bytes, stm32f4xx_hal_tim.o(i.HAL_TIM_ConfigClockSource))
@@ -1234,8 +1242,9 @@ Global Symbols
 <LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_TI1_ConfigInputStage
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ITRx_SetConfig
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM8_Init
-<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM3_Init
+<BR>[Called By]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM8_Init
+<LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM3_Init
+<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM2_Init
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM1_Init
 </UL>
 
@@ -1297,8 +1306,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[e1]"></a>MX_DAC_Init</STRONG> (Thumb, 52 bytes, Stack size 16 bytes, dac.o(i.MX_DAC_Init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = MX_DAC_Init &rArr; HAL_DAC_Init &rArr; HAL_DAC_MspInit &rArr; HAL_GPIO_Init
+<P><STRONG><a name="[e1]"></a>MX_DAC_Init</STRONG> (Thumb, 68 bytes, Stack size 16 bytes, dac.o(i.MX_DAC_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = MX_DAC_Init &rArr; HAL_DAC_Init &rArr; HAL_DAC_MspInit &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DAC_Init
 <LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DAC_ConfigChannel
@@ -1307,7 +1316,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[e3]"></a>MX_DMA_Init</STRONG> (Thumb, 72 bytes, Stack size 8 bytes, dma.o(i.MX_DMA_Init))
+<P><STRONG><a name="[e3]"></a>MX_DMA_Init</STRONG> (Thumb, 88 bytes, Stack size 8 bytes, dma.o(i.MX_DMA_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = MX_DMA_Init &rArr; HAL_NVIC_SetPriority
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SetPriority
@@ -1361,7 +1370,18 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[eb]"></a>MX_TIM3_Init</STRONG> (Thumb, 94 bytes, Stack size 32 bytes, tim.o(i.MX_TIM3_Init))
+<P><STRONG><a name="[eb]"></a>MX_TIM2_Init</STRONG> (Thumb, 96 bytes, Stack size 32 bytes, tim.o(i.MX_TIM2_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = MX_TIM2_Init &rArr; HAL_TIM_Base_Init &rArr; TIM_Base_SetConfig
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_ConfigClockSource
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Init
+<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIMEx_MasterConfigSynchronization
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Error_Handler
+</UL>
+<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[ec]"></a>MX_TIM3_Init</STRONG> (Thumb, 96 bytes, Stack size 32 bytes, tim.o(i.MX_TIM3_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = MX_TIM3_Init &rArr; HAL_TIM_Base_Init &rArr; TIM_Base_SetConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_ConfigClockSource
@@ -1372,7 +1392,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[ec]"></a>MX_TIM8_Init</STRONG> (Thumb, 96 bytes, Stack size 32 bytes, tim.o(i.MX_TIM8_Init))
+<P><STRONG><a name="[ed]"></a>MX_TIM8_Init</STRONG> (Thumb, 96 bytes, Stack size 32 bytes, tim.o(i.MX_TIM8_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = MX_TIM8_Init &rArr; HAL_TIM_Base_Init &rArr; TIM_Base_SetConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_ConfigClockSource
@@ -1404,11 +1424,11 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f407xx.o(RESET)
 </UL>
 <P><STRONG><a name="[c]"></a>SysTick_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f4xx_it.o(i.SysTick_Handler))
-<BR><BR>[Calls]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_IncTick
+<BR><BR>[Calls]<UL><LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_IncTick
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f407xx.o(RESET)
 </UL>
-<P><STRONG><a name="[ee]"></a>SystemClock_Config</STRONG> (Thumb, 138 bytes, Stack size 88 bytes, main.o(i.SystemClock_Config))
+<P><STRONG><a name="[ef]"></a>SystemClock_Config</STRONG> (Thumb, 138 bytes, Stack size 88 bytes, main.o(i.SystemClock_Config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = SystemClock_Config &rArr; HAL_RCC_ClockConfig &rArr; HAL_RCC_GetSysClockFreq &rArr; __aeabi_uldivmod
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_OscConfig
@@ -1468,167 +1488,162 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;arm_cmplx_mag_f32
 </UL>
 
-<P><STRONG><a name="[ef]"></a>analyze_fft</STRONG> (Thumb, 242 bytes, Stack size 48 bytes, fft.o(i.analyze_fft))
+<P><STRONG><a name="[f0]"></a>analyze_fft</STRONG> (Thumb, 242 bytes, Stack size 48 bytes, fft.o(i.analyze_fft))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = analyze_fft &rArr; __aeabi_memcpy4
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
-<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
+<LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;capture_and_FFT
+<BR>[Called By]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;capture_and_FFT
 </UL>
 
-<P><STRONG><a name="[f1]"></a>atk_md0350_backlight_on</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, atk_md0350.o(i.atk_md0350_backlight_on))
+<P><STRONG><a name="[f2]"></a>atk_md0350_backlight_on</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, atk_md0350.o(i.atk_md0350_backlight_on))
 <BR><BR>[Calls]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 </UL>
-<BR>[Called By]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_init
+<BR>[Called By]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_init
 </UL>
 
-<P><STRONG><a name="[f2]"></a>atk_md0350_clear</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, atk_md0350.o(i.atk_md0350_clear))
+<P><STRONG><a name="[f3]"></a>atk_md0350_clear</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, atk_md0350.o(i.atk_md0350_clear))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = atk_md0350_clear &rArr; atk_md0350_fill &rArr; atk_md0350_start_write_memory
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_fill
 </UL>
-<BR>[Called By]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_init
+<BR>[Called By]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_init
 <LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[fb]"></a>atk_md0350_display_on</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, atk_md0350.o(i.atk_md0350_display_on))
+<P><STRONG><a name="[fc]"></a>atk_md0350_display_on</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, atk_md0350.o(i.atk_md0350_display_on))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = atk_md0350_display_on
 </UL>
-<BR>[Called By]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_init
+<BR>[Called By]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_init
 </UL>
 
 <P><STRONG><a name="[9f]"></a>atk_md0350_draw_line</STRONG> (Thumb, 152 bytes, Stack size 48 bytes, atk_md0350.o(i.atk_md0350_draw_line))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = atk_md0350_draw_line &rArr; atk_md0350_draw_point &rArr; atk_md0350_start_write_memory
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_draw_point
+<BR>[Calls]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_draw_point
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawDynamicGraph_float
 <LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawDynamicGraph
 </UL>
 
-<P><STRONG><a name="[f3]"></a>atk_md0350_draw_point</STRONG> (Thumb, 42 bytes, Stack size 16 bytes, atk_md0350.o(i.atk_md0350_draw_point))
+<P><STRONG><a name="[f4]"></a>atk_md0350_draw_point</STRONG> (Thumb, 42 bytes, Stack size 16 bytes, atk_md0350.o(i.atk_md0350_draw_point))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = atk_md0350_draw_point &rArr; atk_md0350_start_write_memory
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_start_write_memory
-<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_set_page_address
-<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_set_column_address
+<BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_start_write_memory
+<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_set_page_address
+<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_set_column_address
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_draw_line
-<LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_show_char
+<LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_show_char
 </UL>
 
 <P><STRONG><a name="[9e]"></a>atk_md0350_fill</STRONG> (Thumb, 76 bytes, Stack size 32 bytes, atk_md0350.o(i.atk_md0350_fill))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = atk_md0350_fill &rArr; atk_md0350_start_write_memory
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_start_write_memory
-<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_set_page_address
-<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_set_column_address
+<BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_start_write_memory
+<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_set_page_address
+<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_set_column_address
 </UL>
-<BR>[Called By]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_clear
+<BR>[Called By]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_clear
 <LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawDynamicGraph_float
 <LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawDynamicGraph
 </UL>
 
-<P><STRONG><a name="[f7]"></a>atk_md0350_fsmc_init</STRONG> (Thumb, 814 bytes, Stack size 120 bytes, atk_md0350_fsmc.o(i.atk_md0350_fsmc_init))
+<P><STRONG><a name="[f8]"></a>atk_md0350_fsmc_init</STRONG> (Thumb, 814 bytes, Stack size 120 bytes, atk_md0350_fsmc.o(i.atk_md0350_fsmc_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 224<LI>Call Chain = atk_md0350_fsmc_init &rArr; HAL_SRAM_Init &rArr; HAL_SRAM_MspInit &rArr; HAL_FSMC_MspInit &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SRAM_Init
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
 <LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_init
+<BR>[Called By]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_init
 </UL>
 
-<P><STRONG><a name="[f8]"></a>atk_md0350_init</STRONG> (Thumb, 216 bytes, Stack size 40 bytes, atk_md0350.o(i.atk_md0350_init))
+<P><STRONG><a name="[f9]"></a>atk_md0350_init</STRONG> (Thumb, 216 bytes, Stack size 40 bytes, atk_md0350.o(i.atk_md0350_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 264<LI>Call Chain = atk_md0350_init &rArr; atk_md0350_fsmc_init &rArr; HAL_SRAM_Init &rArr; HAL_SRAM_MspInit &rArr; HAL_FSMC_MspInit &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
-<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_clear
-<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_fsmc_init
-<LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_set_disp_dir
-<LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_display_on
-<LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_backlight_on
-<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_reg_init
+<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_clear
+<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_fsmc_init
+<LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_set_disp_dir
+<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_display_on
+<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_backlight_on
+<LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_reg_init
 <LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[fa]"></a>atk_md0350_set_disp_dir</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, atk_md0350.o(i.atk_md0350_set_disp_dir))
+<P><STRONG><a name="[fb]"></a>atk_md0350_set_disp_dir</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, atk_md0350.o(i.atk_md0350_set_disp_dir))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = atk_md0350_set_disp_dir &rArr; atk_md0350_set_scan_dir &rArr; atk_md0350_set_page_address
 </UL>
-<BR>[Calls]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_set_scan_dir
+<BR>[Calls]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_set_scan_dir
 </UL>
-<BR>[Called By]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_init
+<BR>[Called By]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_init
 </UL>
 
-<P><STRONG><a name="[fc]"></a>atk_md0350_set_scan_dir</STRONG> (Thumb, 202 bytes, Stack size 16 bytes, atk_md0350.o(i.atk_md0350_set_scan_dir))
+<P><STRONG><a name="[fd]"></a>atk_md0350_set_scan_dir</STRONG> (Thumb, 202 bytes, Stack size 16 bytes, atk_md0350.o(i.atk_md0350_set_scan_dir))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = atk_md0350_set_scan_dir &rArr; atk_md0350_set_page_address
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_set_page_address
-<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_set_column_address
+<BR>[Calls]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_set_page_address
+<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_set_column_address
 </UL>
-<BR>[Called By]<UL><LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_set_disp_dir
+<BR>[Called By]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_set_disp_dir
 </UL>
 
-<P><STRONG><a name="[fd]"></a>atk_md0350_show_char</STRONG> (Thumb, 208 bytes, Stack size 56 bytes, atk_md0350.o(i.atk_md0350_show_char))
+<P><STRONG><a name="[fe]"></a>atk_md0350_show_char</STRONG> (Thumb, 208 bytes, Stack size 56 bytes, atk_md0350.o(i.atk_md0350_show_char))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = atk_md0350_show_char &rArr; atk_md0350_draw_point &rArr; atk_md0350_start_write_memory
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_draw_point
+<BR>[Calls]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_draw_point
 </UL>
-<BR>[Called By]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_show_string
+<BR>[Called By]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_show_string
 </UL>
 
-<P><STRONG><a name="[fe]"></a>atk_md0350_show_string</STRONG> (Thumb, 150 bytes, Stack size 48 bytes, atk_md0350.o(i.atk_md0350_show_string))
+<P><STRONG><a name="[ff]"></a>atk_md0350_show_string</STRONG> (Thumb, 150 bytes, Stack size 48 bytes, atk_md0350.o(i.atk_md0350_show_string))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = atk_md0350_show_string &rArr; atk_md0350_show_char &rArr; atk_md0350_draw_point &rArr; atk_md0350_start_write_memory
 </UL>
-<BR>[Calls]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_show_char
+<BR>[Calls]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_show_char
 </UL>
 <BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[ff]"></a>capture_and_FFT</STRONG> (Thumb, 138 bytes, Stack size 88 bytes, fft.o(i.capture_and_FFT))
+<P><STRONG><a name="[100]"></a>capture_and_FFT</STRONG> (Thumb, 138 bytes, Stack size 88 bytes, fft.o(i.capture_and_FFT))
 <BR><BR>[Stack]<UL><LI>Max Depth = 172<LI>Call Chain = capture_and_FFT &rArr; arm_cfft_radix4_f32 &rArr; arm_radix4_butterfly_inverse_f32
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;arm_cmplx_mag_f32
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;arm_cfft_radix4_init_f32
 <LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;arm_cfft_radix4_f32
-<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analyze_fft
+<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analyze_fft
 <LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
-<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
+<LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[105]"></a>frequency_change</STRONG> (Thumb, 82 bytes, Stack size 12 bytes, main.o(i.frequency_change))
-<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = frequency_change
-</UL>
-<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[100]"></a>key_scan</STRONG> (Thumb, 184 bytes, Stack size 32 bytes, main.o(i.key_scan))
+<P><STRONG><a name="[101]"></a>key_scan</STRONG> (Thumb, 214 bytes, Stack size 32 bytes, main.o(i.key_scan))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = key_scan
 </UL>
-<BR>[Calls]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_ReadPin
-<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DWT_Delay
+<BR>[Calls]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_ReadPin
+<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DWT_Delay
 </UL>
 <BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[79]"></a>main</STRONG> (Thumb, 402 bytes, Stack size 88 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 352 + Unknown Stack Size
+<P><STRONG><a name="[79]"></a>main</STRONG> (Thumb, 382 bytes, Stack size 104 bytes, main.o(i.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 368 + Unknown Stack Size
 <LI>Call Chain = main &rArr; atk_md0350_init &rArr; atk_md0350_fsmc_init &rArr; HAL_SRAM_Init &rArr; HAL_SRAM_MspInit &rArr; HAL_FSMC_MspInit &rArr; HAL_GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;capture_and_FFT
-<LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_show_string
-<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_init
+<BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;capture_and_FFT
+<LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_show_string
+<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_init
 <LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_fill
-<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_clear
-<LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM8_Init
-<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM3_Init
+<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_clear
+<LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM8_Init
+<LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM3_Init
+<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM2_Init
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM1_Init
 <LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_I2C2_Init
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init
@@ -1640,23 +1655,22 @@ Global Symbols
 <LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
 <LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FFT_INIT
-<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DWT_Init
+<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DWT_Init
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DWT_GetDeltaT
-<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DWT_Delay
-<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;start_dac_output
-<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;key_scan
-<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;frequency_change
-<LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
+<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DWT_Delay
+<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;start_dac_output
+<LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;key_scan
+<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawDynamicGraph_float
 <LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawDynamicGraph
-<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
+<LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2snprintf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[104]"></a>start_dac_output</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, main.o(i.start_dac_output))
-<BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = start_dac_output &rArr; HAL_DAC_Start_DMA &rArr; HAL_DMA_Start_IT &rArr; DMA_SetConfig
+<P><STRONG><a name="[105]"></a>start_dac_output</STRONG> (Thumb, 46 bytes, Stack size 16 bytes, main.o(i.start_dac_output))
+<BR><BR>[Stack]<UL><LI>Max Depth = 76<LI>Call Chain = start_dac_output &rArr; HAL_DAC_Start_DMA &rArr; HAL_DMA_Start_IT &rArr; DMA_SetConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Start
 <LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DAC_Start_DMA
@@ -1773,35 +1787,35 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DWT_GetDeltaT
 </UL>
 
-<P><STRONG><a name="[f9]"></a>atk_md0350_reg_init</STRONG> (Thumb, 8830 bytes, Stack size 40 bytes, atk_md0350.o(i.atk_md0350_reg_init))
+<P><STRONG><a name="[fa]"></a>atk_md0350_reg_init</STRONG> (Thumb, 8830 bytes, Stack size 40 bytes, atk_md0350.o(i.atk_md0350_reg_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = atk_md0350_reg_init &rArr; HAL_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 </UL>
-<BR>[Called By]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_init
+<BR>[Called By]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_init
 </UL>
 
-<P><STRONG><a name="[f4]"></a>atk_md0350_set_column_address</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, atk_md0350.o(i.atk_md0350_set_column_address))
+<P><STRONG><a name="[f5]"></a>atk_md0350_set_column_address</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, atk_md0350.o(i.atk_md0350_set_column_address))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = atk_md0350_set_column_address
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_fill
-<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_set_scan_dir
-<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_draw_point
+<LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_set_scan_dir
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_draw_point
 </UL>
 
-<P><STRONG><a name="[f5]"></a>atk_md0350_set_page_address</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, atk_md0350.o(i.atk_md0350_set_page_address))
+<P><STRONG><a name="[f6]"></a>atk_md0350_set_page_address</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, atk_md0350.o(i.atk_md0350_set_page_address))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = atk_md0350_set_page_address
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_fill
-<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_set_scan_dir
-<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_draw_point
+<LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_set_scan_dir
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_draw_point
 </UL>
 
-<P><STRONG><a name="[f6]"></a>atk_md0350_start_write_memory</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, atk_md0350.o(i.atk_md0350_start_write_memory))
+<P><STRONG><a name="[f7]"></a>atk_md0350_start_write_memory</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, atk_md0350.o(i.atk_md0350_start_write_memory))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = atk_md0350_start_write_memory
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_fill
-<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_draw_point
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atk_md0350_draw_point
 </UL>
 
 <P><STRONG><a name="[61]"></a>_printf_input_char</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, _printf_char_common.o(.text))

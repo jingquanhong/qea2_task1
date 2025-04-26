@@ -6,7 +6,7 @@
 #include "tim.h"
 #include "adc.h"
 
-#define FFT_LENGTH		1024 		//FFT数组大小
+#define FFT_LENGTH		4096 		//FFT数组大小 1024
 //#define SAMPLING_RATE 20000  // ADC采样频率
 
 
