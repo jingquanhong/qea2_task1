@@ -26,8 +26,7 @@ void FFT_INIT(void)
 	
 }
 
-    float max_value1 = 0, max_value2 = 0;
-    int max_index1 = 0, max_index2 = 0;
+
 
 
 
@@ -53,7 +52,8 @@ SignalInfo_t analyze_fft(float *fft_outputbuf, int fft_length, float fs)
     // 直流分量
     signal_info.dc_offset = fft_outputbuf[0] / fft_length;
 
-
+    float max_value1 = 0, max_value2 = 0;
+    int max_index1 = 0, max_index2 = 0;
     
     for (int i = 1; i < fft_length / 2; i++) {
         if (fft_outputbuf[i] > max_value1) {

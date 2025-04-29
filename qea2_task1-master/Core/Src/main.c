@@ -497,6 +497,8 @@ void frequency_change(int delt_freq)
 		
 		TIM2_arr = (84000000 / (target_freq*50)) - 1;
 		__HAL_TIM_SET_AUTORELOAD(&htim2, TIM2_arr);//10kHZ的输出周期频率
+		  start_dac_output();//开启dac输出
+
 
 }
 
