@@ -42,7 +42,7 @@
 //};
 
 
-const uint16_t Sine12bit_50[50] = {
+ uint16_t Sine12bit_50[50] = {
     0x0800,0x0901,0x09FD,0x0AF2,0x0BDA,0x0CB3,0x0D79,0x0E29,0x0EC0,0x0F3C,
     0x0F9B,0x0FDB,0x0FFB,0x0FDB,0x0F3C,0x0EC0,0x0E29,0x0D79,0x0CB3,0x0BDA,
     0x0AF2,0x09FD,0x0901,0x0800,0x06FF,0x0603,0x050E,0x0426,0x034D,0x0287,
@@ -86,7 +86,7 @@ extern DMA_HandleTypeDef hdma_adc1;
 extern float fft_outputbuf[FFT_LENGTH*2];
 extern uint16_t ADC_1_Value_DMA[FFT_LENGTH];//ADC锟斤拷锟斤拷锟斤拷锟斤拷
 extern SignalInfo_t signal_info_real;//锟斤拷锟斤拷锟脚猴拷锟斤拷息
-int16_t show_value1;
+int32_t show_value1;
 float show_vpp;
 int16_t show_value2;
 int16_t size;
@@ -186,7 +186,7 @@ static int time_count =0;//璁℃暟鍙橀噺 鐢ㄤ簬鎺у埗棰戠巼
   int key1 = 0, key1_press = 0;
   int key2 = 0, key2_press = 0;
 
-int SAMPLING_RATE =100000;//20000
+int SAMPLING_RATE =400000;//20000
 
 
 void Task1_Start(void) {
@@ -236,7 +236,7 @@ float max_min_diff(uint16_t *array, int length)
     }
     return max_val - min_val;
 }
-float a=0.005;
+float a=0.1;
 
 
 
@@ -256,7 +256,11 @@ float a=0.005;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-
+int round_up_to_nearest_100(int value) {
+    return ((value + 50) / 100) * 100;
+}
+//uint16_t x=240, y=0;
+uint16_t x=0, y=30;
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -323,6 +327,12 @@ int main(void)
 	
   start_dac_output();//开启dac输出
 	HAL_Delay(100);
+	
+	    for(int i = 0; i < 50; i++) {
+        float angle = 2 * PI * i / 50;
+        float sine = sinf(angle);
+        Sine12bit_50[i] = (uint16_t)((sine * 2047.0f  + 2048.0f)/3.3);
+    }
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -330,10 +340,9 @@ int main(void)
   while (1)
   {
 
-		
 		DWT_GetDeltaT(&task_count);
 		
-			if(time_count%1==0){
+		if(time_count%1==0){
 				
 		signal_info_real=capture_and_FFT( FFT_LENGTH, ADC_1_Value_DMA,  SAMPLING_RATE);
 		size = sizeof(ADC_1_Value_DMA) / sizeof(ADC_1_Value_DMA[0]);
@@ -345,71 +354,48 @@ int main(void)
 	
 		if(time_count%2==0){
 			key_scan();
-//						if(trigger1)
-//			{
-//				SAMPLING_RATE+=1000;//增大采样频率
-//				
-//			}
+
 			frequency_change(100);//一开始10Khz
 		}
 
 		
 		if(time_count%400==0){
-			
-
-			
-//	  	frequency_change(100,key2_press,key1_press);//一开始10Khz
-
+		
 		}			
 		
 		if(time_count%3==0){
-			
-			
-			
-
-		
-			
-		
-		
-
-//    char vpp[64];
-//		
-//		show_vpp = 3.3;
-//		
-//    snprintf(vpp, sizeof(vpp), "%.2f", show_vpp);  // 绀轰緥锛氭樉绀虹涓?涓狝DC鍊?
-//		
-//    // 3. 鍦↙CD涓婃樉绀哄瓧绗︿覆
-//    atk_md0350_show_string(10, 190, 10, 10, vpp, ATK_MD0350_LCD_FONT_32, ATK_MD0350_RED);
-		
-
 		atk_md0350_fill(0, 0, 300, 40, ATK_MD0350_WHITE);
+		atk_md0350_fill(x, y, 300, 40, ATK_MD0350_WHITE);
+	  }
 		
-	}
-		
-     amp_raw=max_min_diff(ADC_1_Value_DMA,  FFT_LENGTH);
-	   amp_result=low_pass_filter(amp_raw,last_amp_result,a);
+    amp_raw=max_min_diff(ADC_1_Value_DMA,  FFT_LENGTH)/4096*3.3;
+	  amp_result=low_pass_filter(amp_raw,last_amp_result,a);
 	
 		last_amp_result=amp_result;
-		
-		
-		
+
 		float Task_T = DWT_GetDeltaT(&task_count);
     wasteT = 0.001f - Task_T;
 		if(wasteT>=0)
     DWT_Delay(wasteT);
     time_count++;//1000hz鑷
-		
-		
-		
-		
-		    char msg_author[64];
+
+		char msg_author[64];
 		
 		show_value1 = signal_info_real.main_freq;
-		
+		show_value1 = round_up_to_nearest_100(signal_info_real.main_freq);
+
     snprintf(msg_author, sizeof(msg_author), "main_freq: %d", show_value1);  // 绀轰緥锛氭樉绀虹涓?涓狝DC鍊?
 		
     // 3. 鍦↙CD涓婃樉绀哄瓧绗︿覆
     atk_md0350_show_string(0, 0, 300, 40, msg_author, ATK_MD0350_LCD_FONT_32, ATK_MD0350_RED);
+		
+		char msg_author1[64];
+
+    snprintf(msg_author1, sizeof(msg_author1), "amp: %.2f", amp_result);  // 输出两位小数
+		
+		
+    // 3. 鍦↙CD涓婃樉绀哄瓧绗︿覆
+    atk_md0350_show_string(x, y, 300, 40, msg_author1, ATK_MD0350_LCD_FONT_32, ATK_MD0350_RED);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -480,7 +466,7 @@ void frequency_change(int delt_freq)
 		if(trigger1==1)
 		{
 			 target_freq += delt_freq;
-       if (target_freq > 10000) target_freq = 10000;
+       if (target_freq > 50000) target_freq = 50000;
 //		}
 //		
 //		else if(trigger1==0)
@@ -497,7 +483,8 @@ void frequency_change(int delt_freq)
 		
 		TIM2_arr = (84000000 / (target_freq*50)) - 1;
 		__HAL_TIM_SET_AUTORELOAD(&htim2, TIM2_arr);//10kHZ的输出周期频率
-		  start_dac_output();//开启dac输出
+		__HAL_TIM_SET_COUNTER(&htim2, 0);  // 关键：清零计数器
+//		  start_dac_output();//开启dac输出
 
 
 }

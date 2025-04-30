@@ -22,7 +22,7 @@ Dialog DLL:      TCM.DLL V1.48.0.0
  
 <h2>Project:</h2>
 D:\the_five\qea_task1\version2\qea2_task1\qea2_task1-master\MDK-ARM\qea_task1.uvprojx
-Project File Date:  04/26/2025
+Project File Date:  04/30/2025
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'd:\Keil_v5\ARM\ARMCC\Bin'
@@ -32,13 +32,17 @@ compiling main.c...
   #endif
 ../user/fft.h(30): warning:  #1-D: last line of file ends without a newline
   #endif
-../Core/Src/main.c(409): warning:  #223-D: function "snprintf" declared implicitly
+../Core/Src/main.c(334): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+          Sine12bit_50[i] = (uint16_t)((sine * 2047.0f  + 2048.0f)/3.3);
+../Core/Src/main.c(371): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+      amp_raw=max_min_diff(ADC_1_Value_DMA,  FFT_LENGTH)/4096*3.3;
+../Core/Src/main.c(387): warning:  #223-D: function "snprintf" declared implicitly
       snprintf(msg_author, sizeof(msg_author), "main_freq: %d", show_value1);  // 示例：显示第�?个ADC�?
-../Core/Src/main.c: 3 warnings, 0 errors
+../Core/Src/main.c: 5 warnings, 0 errors
 linking...
-Program Size: Code=26794 RO-data=47534 RW-data=200 ZI-data=76312  
+Program Size: Code=33410 RO-data=47642 RW-data=304 ZI-data=76312  
 FromELF: creating hex file...
-"qea_task1\qea_task1.axf" - 0 Error(s), 3 Warning(s).
+"qea_task1\qea_task1.axf" - 0 Error(s), 5 Warning(s).
 
 <h2>Software Packages used:</h2>
 
